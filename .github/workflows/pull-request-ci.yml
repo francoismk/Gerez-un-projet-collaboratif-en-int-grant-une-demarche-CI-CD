@@ -56,6 +56,13 @@ jobs:
           name: frontend-coverage-report
           path: front/coverage/
 
+      - name: SonarCloud Scan (frontend)
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          projectBaseDir: front
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
   backend:
     name: Backend Build & Test
     runs-on: ubuntu-latest
@@ -95,3 +102,10 @@ jobs:
         with:
           name: jacoco-report
           path: back/target
+
+      - name: SonarCloud Scan (backend)
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          projectBaseDir: back
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
