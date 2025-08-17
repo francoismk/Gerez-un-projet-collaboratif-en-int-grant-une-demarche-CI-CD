@@ -29,7 +29,6 @@ Valider la qualité du code avant integration sur la branche principale.
 | **Run Tests** | `npm test` avec Karma/ChromeHeadless + code coverage | Validation des fonctionnalités et calcul de couverture |
 | **Test Reporting** | Génération du rapport de tests avec dorny/test-reporter | Visibilité des résultats dans GitHub |
 | **Coverage Upload** | Upload des artefacts de couverture | Conservation des métriques pour analyse |
-| **SonarCloud Scan** | Analyse de qualité du code frontend | Détection des code smells, bugs, vulnérabilités |
 
 #### **Backend** (Job parallèle)
 
@@ -41,7 +40,17 @@ Valider la qualité du code avant integration sur la branche principale.
 | **Run Tests** | `mvn clean verify` - Tests unitaires et d'intégration | Validation complète du backend |
 | **Test Reporting** | Génération du rapport de tests JUnit | Visibilité des résultats dans GitHub |
 | **Coverage Upload** | Upload des rapports JaCoCo | Conservation des métriques pour analyse |
-| **SonarCloud Scan** | Analyse de qualité du code backend | Détection des code smells, bugs, vulnérabilités |
+
+#### **SonarCloud Analysis** (Job final)
+
+| Étape | Description | Objectif |
+|-------|-------------|----------|
+| **Checkout** | Récupération du code source | Accès aux fichiers de configuration |
+| **Setup JDK 11** | Installation Java 11 pour l'analyse | Environnement requis pour l'analyse Java |
+| **Cache Maven** | Mise en cache des dépendances Maven | Optimisation des performances |
+| **Compile Backend** | `mvn clean compile test-compile` | Génération des binaires Java requis |
+| **Download Artifacts** | Téléchargement des rapports de couverture | Récupération des métriques frontend/backend |
+| **SonarCloud Scan** | Analyse de qualité complète (frontend + backend) | Détection des code smells, bugs, vulnérabilités |
 
 ---
 
